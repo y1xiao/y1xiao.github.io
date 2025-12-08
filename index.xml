@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>Ning&#39;s World</title>
     <link>https://example.org/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <description>Recent content on Ning&#39;s World</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 05 Dec 2025 09:37:49 +0100</lastBuildDate>
     <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>First</title>
+      <title>Stochastic optimization algorithms</title>
       <link>https://example.org/posts/first/</link>
       <pubDate>Fri, 05 Dec 2025 09:37:49 +0100</pubDate>
       <guid>https://example.org/posts/first/</guid>
-      <description></description>
+      <description>&lt;p&gt;Stochastic optimization algorithms&lt;/p&gt;&#xA;&lt;h1 id=&#34;ant-colony-optimization-aco-a-gentle-and-practical-introduction&#34;&gt;Ant Colony Optimization (ACO): A Gentle and Practical Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Ant Colony Optimization (ACO) is a nature-inspired meta-heuristic used to solve difficult combinatorial optimization problems such as the Traveling Salesman Problem (TSP), Vehicle Routing Problem (VRP), scheduling, and network routing.&lt;br&gt;&#xA;It is based on the collective foraging behavior of real ant colonies, which are able to discover efficient paths between their nest and food sources through indirect communication.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -4,9 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>First | My New Hugo Site</title>
+    <title>Stochastic optimization algorithms | Ning&#39;s World</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Stochastic optimization algorithms
+Ant Colony Optimization (ACO): A Gentle and Practical Introduction
+Ant Colony Optimization (ACO) is a nature-inspired meta-heuristic used to solve difficult combinatorial optimization problems such as the Traveling Salesman Problem (TSP), Vehicle Routing Problem (VRP), scheduling, and network routing.
+It is based on the collective foraging behavior of real ant colonies, which are able to discover efficient paths between their nest and food sources through indirect communication.">
     <meta name="generator" content="Hugo 0.152.2">
     
     
@@ -38,19 +41,29 @@
     
     
     <meta property="og:url" content="https://example.org/posts/first/">
-  <meta property="og:site_name" content="My New Hugo Site">
-  <meta property="og:title" content="First">
+  <meta property="og:site_name" content="Ning&#39;s World">
+  <meta property="og:title" content="Stochastic optimization algorithms">
+  <meta property="og:description" content="Stochastic optimization algorithms
+Ant Colony Optimization (ACO): A Gentle and Practical Introduction Ant Colony Optimization (ACO) is a nature-inspired meta-heuristic used to solve difficult combinatorial optimization problems such as the Traveling Salesman Problem (TSP), Vehicle Routing Problem (VRP), scheduling, and network routing.
+It is based on the collective foraging behavior of real ant colonies, which are able to discover efficient paths between their nest and food sources through indirect communication.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-12-05T09:37:49+01:00">
     <meta property="article:modified_time" content="2025-12-05T09:37:49+01:00">
 
-  <meta itemprop="name" content="First">
+  <meta itemprop="name" content="Stochastic optimization algorithms">
+  <meta itemprop="description" content="Stochastic optimization algorithms
+Ant Colony Optimization (ACO): A Gentle and Practical Introduction Ant Colony Optimization (ACO) is a nature-inspired meta-heuristic used to solve difficult combinatorial optimization problems such as the Traveling Salesman Problem (TSP), Vehicle Routing Problem (VRP), scheduling, and network routing.
+It is based on the collective foraging behavior of real ant colonies, which are able to discover efficient paths between their nest and food sources through indirect communication.">
   <meta itemprop="datePublished" content="2025-12-05T09:37:49+01:00">
   <meta itemprop="dateModified" content="2025-12-05T09:37:49+01:00">
+  <meta itemprop="wordCount" content="813">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="First">
+  <meta name="twitter:title" content="Stochastic optimization algorithms">
+  <meta name="twitter:description" content="Stochastic optimization algorithms
+Ant Colony Optimization (ACO): A Gentle and Practical Introduction Ant Colony Optimization (ACO) is a nature-inspired meta-heuristic used to solve difficult combinatorial optimization problems such as the Traveling Salesman Problem (TSP), Vehicle Routing Problem (VRP), scheduling, and network routing.
+It is based on the collective foraging behavior of real ant colonies, which are able to discover efficient paths between their nest and food sources through indirect communication.">
 
       
       
@@ -68,7 +81,7 @@
   <div class="flex-l center items-center justify-between">
     <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
-        My New Hugo Site
+        Ning&#39;s World
       
     </a>
     <div class="flex-l items-center">
@@ -95,7 +108,7 @@
           
         Posts
       </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">First</h1>
+<h1 class="f1 athelas mt3 mb1">Stochastic optimization algorithms</h1>
       
       
       
@@ -105,7 +118,118 @@
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><ul class="pa0">
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><p>Stochastic optimization algorithms</p>
+<h1 id="ant-colony-optimization-aco-a-gentle-and-practical-introduction">Ant Colony Optimization (ACO): A Gentle and Practical Introduction</h1>
+<p>Ant Colony Optimization (ACO) is a nature-inspired meta-heuristic used to solve difficult combinatorial optimization problems such as the Traveling Salesman Problem (TSP), Vehicle Routing Problem (VRP), scheduling, and network routing.<br>
+It is based on the collective foraging behavior of real ant colonies, which are able to discover efficient paths between their nest and food sources through indirect communication.</p>
+<p>This post explains how ACO works, why it works, and how the classical <strong>Ant System (AS)</strong> algorithm can be implemented in practice.</p>
+<hr>
+<h2 id="1-how-real-ants-inspire-optimization">1. How Real Ants Inspire Optimization</h2>
+<p>In nature, ants cooperate without a leader. Each ant is simple, but as a colony they show “swarm intelligence.”<br>
+The key mechanism behind this is <strong>pheromone communication</strong>:</p>
+<ul>
+<li>As ants explore, they deposit pheromone on the ground.</li>
+<li>Other ants tend to follow paths with stronger pheromone concentration.</li>
+<li>Shorter or better paths receive more pheromone reinforcement.</li>
+<li>Over time, the colony amplifies good paths and suppresses bad ones.</li>
+</ul>
+<p>This natural positive feedback loop is the inspiration for Ant Colony Optimization.</p>
+<hr>
+<h2 id="2-the-ant-system-as-algorithm">2. The Ant System (AS) Algorithm</h2>
+<p>Ant System (AS) is the earliest and most basic form of ACO. Although simple, it already captures the essential dynamics that make ACO powerful.</p>
+<p>The algorithm consists of three main steps:</p>
+<hr>
+<h3 id="step-1--initialize-pheromone-levels">Step 1 — Initialize Pheromone Levels</h3>
+<p>Each edge in the problem graph (for example, between two cities in TSP) receives a small initial amount of pheromone.<br>
+This pheromone value will later be increased or decreased based on the quality of the solutions found.</p>
+<hr>
+<h3 id="step-2--probabilistic-construction-of-solutions">Step 2 — Probabilistic Construction of Solutions</h3>
+<p>A number of artificial ants (often 10–500) explore the search space.<br>
+Each ant incrementally builds a solution by repeatedly selecting the next component according to a probability rule that combines:</p>
+<ul>
+<li><strong>Pheromone</strong>: how desirable the choice has historically been</li>
+<li><strong>Visibility</strong>: a heuristic measure, such as inverse distance for TSP</li>
+<li><strong>Two parameters α and β</strong> controlling their influence</li>
+</ul>
+<p>For example, in TSP an ant standing at city <em>i</em> chooses its next city <em>j</em> with probability proportional to:</p>
+<pre tabindex="0"><code>(pheromone[i][j])^α  *  (1 / distance[i][j])^β
+</code></pre><p>A <strong>roulette-wheel selection</strong> is used to choose the next city based on these relative probabilities.</p>
+<p>As ants complete their tours, we obtain a collection of candidate solutions.</p>
+<hr>
+<h3 id="step-3--update-pheromone">Step 3 — Update Pheromone</h3>
+<p>After all ants finish their tours:</p>
+<ol>
+<li>
+<p><strong>Pheromone evaporation</strong> decreases all pheromone values<br>
+(prevents unlimited reinforcement and encourages exploration)</p>
+</li>
+<li>
+<p><strong>Pheromone reinforcement</strong> increases pheromone on edges used by good solutions<br>
+(typically inversely proportional to tour length)</p>
+</li>
+</ol>
+<p>The combination of evaporation and reinforcement allows the system to balance exploration and exploitation.</p>
+<hr>
+<h2 id="3-why-aco-works">3. Why ACO Works</h2>
+<p>ACO works because of a powerful interaction between stochastic exploration and positive feedback:</p>
+<ul>
+<li>At the beginning, ants explore many paths randomly.</li>
+<li>Slightly better solutions deposit slightly more pheromone.</li>
+<li>More ants follow these promising paths, depositing even more pheromone.</li>
+<li>Over time, the colony converges toward high-quality solutions.</li>
+</ul>
+<p>This emergent behavior does not require any central coordination.<br>
+It is a purely collective process driven by simple probabilistic rules.</p>
+<hr>
+<h2 id="4-improvements-beyond-ant-system-maxmin-ant-system-mmas">4. Improvements Beyond Ant System: Max–Min Ant System (MMAS)</h2>
+<p>Although Ant System is conceptually simple, it sometimes converges too quickly and becomes stuck in suboptimal solutions.</p>
+<p>To address this, improved variants like <strong>Max–Min Ant System (MMAS)</strong> introduce several enhancements:</p>
+<ul>
+<li>Only the <strong>best ant</strong> is allowed to update pheromones.</li>
+<li>Pheromone levels are <strong>bounded between a minimum and maximum value</strong>.</li>
+<li>Initial pheromone levels are set to the maximum to encourage exploration.</li>
+</ul>
+<p>These modifications greatly reduce premature convergence and make ACO more stable, especially on large or difficult instances.</p>
+<hr>
+<h2 id="5-applications-of-aco">5. Applications of ACO</h2>
+<p>ACO has been applied successfully in many real-world domains:</p>
+<h3 id="routing-and-logistics">Routing and Logistics</h3>
+<ul>
+<li>Traveling Salesman Problem (TSP)</li>
+<li>Vehicle Routing Problem (VRP)</li>
+<li>Network routing in dynamic or unreliable environments</li>
+</ul>
+<h3 id="scheduling-and-assignment">Scheduling and Assignment</h3>
+<ul>
+<li>Job-shop scheduling</li>
+<li>Resource allocation problems</li>
+</ul>
+<h3 id="swarm-robotics">Swarm Robotics</h3>
+<p>Multiple robot systems use ACO-style rules for collective decision-making, exploration, and coordination.</p>
+<h3 id="dynamic-optimization">Dynamic Optimization</h3>
+<p>Because pheromone adapts continuously, ACO is naturally suitable for environments where constraints and conditions change over time.</p>
+<hr>
+<h2 id="6-aco-in-practice-example-behavior">6. ACO in Practice: Example Behavior</h2>
+<p>When you run an Ant System implementation for TSP:</p>
+<ul>
+<li>At first, ants produce random tours with high variability.</li>
+<li>Over time, the best tours appear more frequently.</li>
+<li>The pheromone on high-quality edges increases.</li>
+<li>Eventually, the colony converges to a short and stable tour.</li>
+</ul>
+<p>Visualizing the tours over iterations often provides very clear insight into the convergence behavior.</p>
+<hr>
+<h2 id="7-summary">7. Summary</h2>
+<p>Ant Colony Optimization is a compelling example of how simple local rules and indirect communication can generate powerful global behavior. Its strengths include:</p>
+<ul>
+<li>Distributed and robust search</li>
+<li>Natural balance of exploration and exploitation</li>
+<li>Adaptability to dynamic environments</li>
+<li>Strong performance on combinatorial problems</li>
+</ul>
+<p>Starting from the foundational Ant System algorithm, more advanced variants such as MMAS enable ACO to scale to real industrial and scientific applications.</p>
+<p>If you&rsquo;re implementing ACO for TSP, network routing, or scheduling, the algorithm is both intuitive and surprisingly effective — and watching a colony of artificial ants gradually “discover” a good solution is always satisfying.</p>
+<ul class="pa0">
   
 </ul>
 <div class="mt6 instapaper_ignoref">
@@ -118,7 +242,7 @@
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://example.org/" >
-    &copy;  My New Hugo Site 2025 
+    &copy;  Ning's World 2025 
   </a>
     <div><div class="ananke-socials"></div>
 </div>
