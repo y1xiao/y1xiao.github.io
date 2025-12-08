@@ -6,14 +6,21 @@
     <description>Recent content in Posts on Ning&#39;s World</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Dec 2025 09:37:49 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 08 Dec 2025 10:44:43 +0100</lastBuildDate>
     <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Stochastic optimization algorithms</title>
+      <title>Stochastic optimization algorithms (2)</title>
+      <link>https://example.org/posts/second/</link>
+      <pubDate>Mon, 08 Dec 2025 10:44:43 +0100</pubDate>
+      <guid>https://example.org/posts/second/</guid>
+      <description>&lt;h1 id=&#34;particle-swarm-optimization-pso-an-intuitive-introduction-with-the-himmelblau-function&#34;&gt;Particle Swarm Optimization (PSO): An Intuitive Introduction with the Himmelblau Function&lt;/h1&gt;&#xA;&lt;p&gt;Particle Swarm Optimization (PSO) is a population-based optimization method inspired by the coordinated motion of birds and fish.&lt;br&gt;&#xA;Despite being simple, PSO is highly effective for solving nonlinear, non-convex optimization problems—particularly those with many local minima.&lt;/p&gt;&#xA;&lt;p&gt;This article provides a gentle introduction to PSO and explains how it works through a practical example: finding the minima of the &lt;strong&gt;Himmelblau function&lt;/strong&gt; using a real Python implementation.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Stochastic optimization algorithms (1)</title>
       <link>https://example.org/posts/first/</link>
       <pubDate>Fri, 05 Dec 2025 09:37:49 +0100</pubDate>
       <guid>https://example.org/posts/first/</guid>
-      <description>&lt;p&gt;Stochastic optimization algorithms&lt;/p&gt;&#xA;&lt;h1 id=&#34;ant-colony-optimization-aco-a-gentle-and-practical-introduction&#34;&gt;Ant Colony Optimization (ACO): A Gentle and Practical Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Ant Colony Optimization (ACO) is a nature-inspired meta-heuristic used to solve difficult combinatorial optimization problems such as the Traveling Salesman Problem (TSP), Vehicle Routing Problem (VRP), scheduling, and network routing.&lt;br&gt;&#xA;It is based on the collective foraging behavior of real ant colonies, which are able to discover efficient paths between their nest and food sources through indirect communication.&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;ant-colony-optimization-aco-a-gentle-and-practical-introduction&#34;&gt;Ant Colony Optimization (ACO): A Gentle and Practical Introduction&lt;/h1&gt;&#xA;&lt;p&gt;Ant Colony Optimization (ACO) is a nature-inspired meta-heuristic used to solve difficult combinatorial optimization problems such as the Traveling Salesman Problem (TSP), Vehicle Routing Problem (VRP), scheduling, and network routing.&lt;br&gt;&#xA;It is based on the collective foraging behavior of real ant colonies, which are able to discover efficient paths between their nest and food sources through indirect communication.&lt;/p&gt;&#xA;&lt;p&gt;This post explains how ACO works, why it works, and how the classical &lt;strong&gt;Ant System (AS)&lt;/strong&gt; algorithm can be implemented in practice.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

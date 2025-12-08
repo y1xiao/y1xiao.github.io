@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Stochastic optimization algorithms (2) | Ning&#39;s World</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Particle Swarm Optimization (PSO): An Intuitive Introduction with the Himmelblau Function
+Particle Swarm Optimization (PSO) is a population-based optimization method inspired by the coordinated motion of birds and fish.
+Despite being simple, PSO is highly effective for solving nonlinear, non-convex optimization problems—particularly those with many local minima.
+This article provides a gentle introduction to PSO and explains how it works through a practical example: finding the minima of the Himmelblau function using a real Python implementation.">
+    <meta name="generator" content="Hugo 0.152.2">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.efe4d852f731d5d1fbb87718387202a97aafd768cdcdaed0662bbe6982e91824.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/second/">
+    
+
+    
+    
+    <meta property="og:url" content="https://example.org/posts/second/">
+  <meta property="og:site_name" content="Ning&#39;s World">
+  <meta property="og:title" content="Stochastic optimization algorithms (2)">
+  <meta property="og:description" content="Particle Swarm Optimization (PSO): An Intuitive Introduction with the Himmelblau Function Particle Swarm Optimization (PSO) is a population-based optimization method inspired by the coordinated motion of birds and fish.
+Despite being simple, PSO is highly effective for solving nonlinear, non-convex optimization problems—particularly those with many local minima.
+This article provides a gentle introduction to PSO and explains how it works through a practical example: finding the minima of the Himmelblau function using a real Python implementation.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-12-08T10:44:43+01:00">
+    <meta property="article:modified_time" content="2025-12-08T10:44:43+01:00">
+
+  <meta itemprop="name" content="Stochastic optimization algorithms (2)">
+  <meta itemprop="description" content="Particle Swarm Optimization (PSO): An Intuitive Introduction with the Himmelblau Function Particle Swarm Optimization (PSO) is a population-based optimization method inspired by the coordinated motion of birds and fish.
+Despite being simple, PSO is highly effective for solving nonlinear, non-convex optimization problems—particularly those with many local minima.
+This article provides a gentle introduction to PSO and explains how it works through a practical example: finding the minima of the Himmelblau function using a real Python implementation.">
+  <meta itemprop="datePublished" content="2025-12-08T10:44:43+01:00">
+  <meta itemprop="dateModified" content="2025-12-08T10:44:43+01:00">
+  <meta itemprop="wordCount" content="638">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Stochastic optimization algorithms (2)">
+  <meta name="twitter:description" content="Particle Swarm Optimization (PSO): An Intuitive Introduction with the Himmelblau Function Particle Swarm Optimization (PSO) is a population-based optimization method inspired by the coordinated motion of birds and fish.
+Despite being simple, PSO is highly effective for solving nonlinear, non-convex optimization problems—particularly those with many local minima.
+This article provides a gentle introduction to PSO and explains how it works through a practical example: finding the minima of the Himmelblau function using a real Python implementation.">
+
+      
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        Ning&#39;s World
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l mw7 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Stochastic optimization algorithms (2)</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2025-12-08T10:44:43+01:00">December 8, 2025</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-100-l"><h1 id="particle-swarm-optimization-pso-an-intuitive-introduction-with-the-himmelblau-function">Particle Swarm Optimization (PSO): An Intuitive Introduction with the Himmelblau Function</h1>
+<p>Particle Swarm Optimization (PSO) is a population-based optimization method inspired by the coordinated motion of birds and fish.<br>
+Despite being simple, PSO is highly effective for solving nonlinear, non-convex optimization problems—particularly those with many local minima.</p>
+<p>This article provides a gentle introduction to PSO and explains how it works through a practical example: finding the minima of the <strong>Himmelblau function</strong> using a real Python implementation.</p>
+<hr>
+<h2 id="1-what-is-pso">1. What Is PSO?</h2>
+<p>PSO maintains a set of candidate solutions called <strong>particles</strong>.<br>
+Each particle &ldquo;flies&rdquo; through the search space with a <strong>position</strong> and <strong>velocity</strong>, adjusting itself based on:</p>
+<ul>
+<li><strong>Its personal best</strong> solution so far</li>
+<li><strong>The global best</strong> solution found by the entire swarm</li>
+</ul>
+<p>This creates a dynamic where particles continuously balance:</p>
+<ul>
+<li><strong>Exploration</strong>: searching new regions</li>
+<li><strong>Exploitation</strong>: refining good solutions</li>
+</ul>
+<p>The method is simple, derivative-free, and works well even for irregular landscapes.</p>
+<hr>
+<h2 id="2-the-standard-pso-update-rule">2. The Standard PSO Update Rule</h2>
+<p>Each particle has:</p>
+<ul>
+<li>Position</li>
+<li>Velocity</li>
+<li>Personal best</li>
+<li>Global best</li>
+</ul>
+<p>In every iteration, velocity is updated using three components:</p>
+<pre tabindex="0"><code>new_velocity =
+    w * old_velocity
+    + c1 * r1 * (pbest - position)
+    + c2 * r2 * (gbest - position)
+</code></pre><p>Where:</p>
+<ul>
+<li><strong>w</strong> = inertia weight</li>
+<li><strong>c1, c2</strong> = acceleration coefficients</li>
+<li><strong>r1, r2</strong> = random numbers in [0,1]</li>
+</ul>
+<p>The particle then updates its position:</p>
+<pre tabindex="0"><code>new_position = position + new_velocity
+</code></pre><p>This combination allows PSO to explore widely while being pulled toward promising areas discovered by the swarm.</p>
+<hr>
+<h2 id="3-inertia-weight-balancing-exploration-and-exploitation">3. Inertia Weight: Balancing Exploration and Exploitation</h2>
+<p>A key design element of modern PSO is the <strong>inertia weight</strong>, which controls how much momentum particles retain:</p>
+<ul>
+<li><strong>w &gt; 1</strong> → encourages exploration</li>
+<li><strong>w &lt; 1</strong> → encourages exploitation</li>
+</ul>
+<p>A common strategy is to start with a high inertia weight and gradually decrease it.<br>
+This gently transitions the algorithm from global search to fine-tuning later in the run.</p>
+<hr>
+<h2 id="4-velocity-clamping-and-boundary-handling">4. Velocity Clamping and Boundary Handling</h2>
+<p>To prevent particles from diverging, PSO often limits velocity:</p>
+<pre tabindex="0"><code>v[i, j] = clamp(v[i, j], -v_max, v_max)
+</code></pre><p>It is also common to handle out-of-bounds positions by reflecting particles back into the domain.<br>
+This encourages exploration along the boundaries rather than letting particles escape the search space.</p>
+<hr>
+<h2 id="5-example-finding-the-minima-of-the-himmelblau-function">5. Example: Finding the Minima of the Himmelblau Function</h2>
+<p>The Himmelblau function is a classic benchmark with <strong>four</strong> distinct minima:</p>
+<pre tabindex="0"><code>f(x, y) = (x^2 + y - 11)^2 + (x + y^2 - 7)^2
+</code></pre><p>Its landscape is highly multi-modal—ideal for demonstrating PSO.</p>
+<p>A typical PSO experiment runs the optimization multiple times with different random seeds to ensure that all minima are discovered.<br>
+After the runs, solutions are deduplicated, and the minima are visualized on a contour plot.</p>
+<hr>
+<h2 id="6-why-pso-works-well-on-himmelblau">6. Why PSO Works Well on Himmelblau</h2>
+<p>PSO performs particularly well on this function because:</p>
+<h3 id="-it-can-escape-local-minima">✔ It can escape local minima</h3>
+<p>The early exploration phase (high inertia) prevents premature convergence.</p>
+<h3 id="-social-sharing-accelerates-discovery">✔ Social sharing accelerates discovery</h3>
+<p>Once a particle finds a good basin, the rest of the swarm is quickly pulled toward it.</p>
+<h3 id="-multiple-independent-runs-reveal-all-minima">✔ Multiple independent runs reveal all minima</h3>
+<p>Since the Himmelblau landscape has four separate basins, repeated runs uncover all minima.</p>
+<hr>
+<h2 id="7-practical-parameter-choices">7. Practical Parameter Choices</h2>
+<p>A robust and commonly used set of parameters includes:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter</th>
+          <th>Meaning</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>c1, c2</td>
+          <td>Cognitive &amp; social acceleration</td>
+          <td>1.8</td>
+      </tr>
+      <tr>
+          <td>w_start</td>
+          <td>Initial inertia</td>
+          <td>1.4</td>
+      </tr>
+      <tr>
+          <td>β</td>
+          <td>Decay factor</td>
+          <td>0.99</td>
+      </tr>
+      <tr>
+          <td>w_min</td>
+          <td>Minimum inertia</td>
+          <td>0.4</td>
+      </tr>
+      <tr>
+          <td>v_max</td>
+          <td>Velocity clamp</td>
+          <td>1.2</td>
+      </tr>
+      <tr>
+          <td>Particles</td>
+          <td>Swarm size</td>
+          <td>50</td>
+      </tr>
+      <tr>
+          <td>Iterations</td>
+          <td>Per run</td>
+          <td>600</td>
+      </tr>
+  </tbody>
+</table>
+<p>These values strike a good balance between speed and stability.</p>
+<hr>
+<h2 id="8-summary">8. Summary</h2>
+<p>Particle Swarm Optimization is a simple yet powerful algorithm for continuous optimization.<br>
+The method&rsquo;s strength comes from:</p>
+<ul>
+<li>Momentum-driven exploration</li>
+<li>Social information sharing</li>
+<li>Smooth transition into exploitation</li>
+<li>No need for gradients</li>
+</ul>
+<p>Applied to the Himmelblau function, PSO reliably identifies all four known minima with elegant, swarm-like behavior.</p>
+<p>If you&rsquo;re learning stochastic optimization, PSO is not only easy to understand but also satisfying to watch—particles glide across the landscape, collaborate indirectly, and eventually settle into optimal basins.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://example.org/" >
+    &copy;  Ning's World 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
